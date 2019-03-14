@@ -1,25 +1,77 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app id="inspire" :dark="dark">
+    <v-toolbar app fixed clipped-left>
+      <v-toolbar-side-icon></v-toolbar-side-icon>
+      <v-toolbar-title>Japanese transliteration FST</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-tooltip v-if="!computedCompleetness" bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn
+            flat
+            icon
+            v-on="on"
+            href="https://github.com/gimyboya/context-freedom/issues/new/choose"
+            target="_Blank_"
+          >
+            <v-icon>mdi-fire</v-icon>
+          </v-btn>
+        </template>
+        <span>Found a bug or got a hot idea?</span>
+      </v-tooltip>
+      <v-btn flat icon @click="dark = !dark">
+        <v-icon>mdi-compare</v-icon>
+      </v-btn>
+    </v-toolbar>
+    <v-content>
+      <v-container fluid>
+        <v-layout row wrap>
+          <v-flex px-1 mb-2 sx12 md6>
+            <h1>Input</h1>
+          </v-flex>
+          <v-flex px-1 mb-2 sx12 md6>
+            <h1>Fst</h1>
+          </v-flex>
+          <v-flex sx12>
+            <h1>Nothing</h1>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
+    <v-footer app fixed>
+      <v-btn flat icon href="https://t.me/bafatah" target="_Blank_">
+        <v-icon>mdi-telegram</v-icon>
+      </v-btn>
+      <v-btn flat icon href="https://twitter.com/gimyboya" target="_Blank_">
+        <v-icon>mdi-twitter</v-icon>
+      </v-btn>
+      <v-btn flat icon href="https://github.com/gimyboya/context-freedom" target="_Blank_">
+        <v-icon>mdi-github-circle</v-icon>
+      </v-btn>
+      <span>&copy; {{ new Date().getFullYear() }}</span>
+    </v-footer>
+  </v-app>
 </template>
-<style lang="stylus">
-#app
-  font-family 'Avenir', Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
 
-#nav
-  padding 30px
-  a
-    font-weight bold
-    color #2c3e50
-    &.router-link-exact-active
-      color #42b983
+<script>
+
+export default {
+  name: 'App',
+  components: {
+  },
+  data() {
+    return {
+      dark: true,
+    }
+  },
+}
+</script>
+
+<style>
+.wrapper {
+  flex-grow: 0.3;
+}
+footer {
+  display: flex;
+  justify-content: center;
+}
 </style>
