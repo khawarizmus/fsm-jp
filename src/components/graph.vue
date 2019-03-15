@@ -176,8 +176,92 @@ export default {
       }
       let fsm
       let graph
+      if (value === 'com') {
+        // one syllabe
+        this.success = true
+        this.transliteration = 'Kon'
+        fsm = new StateMachine({
+          init: 'initial', // initial state
+          transitions: [
+            // Comp
+            // Kon
+            { name: 'com', from: 'initial', to: 'kon' },
+          ],
+        })
+        // create the graph
+        graph = visualize(fsm, { name: 'fsm', orientation: 'horizontal' })
+        // draw with svg
+        this.viz
+          .renderSVGElement(graph)
+          .then((result) => {
+            // getting the element from the dom
+            that.$refs.state.appendChild(result)
+          })
+          .catch((error) => {
+            // Create a new Viz instance (@see Caveats page for more info)
+            that.viz = new Viz({ Module, render })
 
-      if (value === 'computer') {
+            // Possibly display the error
+            console.error(error)
+          })
+      } else if (value === 'pu') {
+        // normal english word
+        this.success = true
+        this.transliteration = 'pyū'
+        // state machine for computer
+        fsm = new StateMachine({
+          init: 'initial', // initial state
+          transitions: [
+            // Computer
+            // Konpyūtā
+            { name: 'pu', from: 'initial', to: 'pyū' },
+          ],
+        })
+        // generate the graph
+        graph = visualize(fsm, { name: 'fsm', orientation: 'horizontal' })
+        this.viz
+          .renderSVGElement(graph)
+          .then((result) => {
+            // getting the element from the dom
+            that.$refs.state.appendChild(result)
+          })
+          .catch((error) => {
+            // Create a new Viz instance (@see Caveats page for more info)
+            that.viz = new Viz({ Module, render })
+
+            // Possibly display the error
+            console.error(error)
+          })
+      } else if (value === 'compu') {
+        // normal english word
+        this.success = true
+        this.transliteration = 'Konpyū'
+        // state machine for computer
+        fsm = new StateMachine({
+          init: 'initial', // initial state
+          transitions: [
+            // Computer
+            // Konpyūtā
+            { name: 'com', from: 'initial', to: 'kon' },
+            { name: 'pu', from: 'kon', to: 'pyū' },
+          ],
+        })
+        // generate the graph
+        graph = visualize(fsm, { name: 'fsm', orientation: 'horizontal' })
+        this.viz
+          .renderSVGElement(graph)
+          .then((result) => {
+            // getting the element from the dom
+            that.$refs.state.appendChild(result)
+          })
+          .catch((error) => {
+            // Create a new Viz instance (@see Caveats page for more info)
+            that.viz = new Viz({ Module, render })
+
+            // Possibly display the error
+            console.error(error)
+          })
+      } else if (value === 'computer') {
         // normal english word
         this.success = true
         this.transliteration = 'Konpyūtā'
@@ -194,6 +278,66 @@ export default {
         })
         // generate the graph
         graph = visualize(fsm, { name: 'fsm', orientation: 'horizontal' })
+        this.viz
+          .renderSVGElement(graph)
+          .then((result) => {
+            // getting the element from the dom
+            that.$refs.state.appendChild(result)
+          })
+          .catch((error) => {
+            // Create a new Viz instance (@see Caveats page for more info)
+            that.viz = new Viz({ Module, render })
+
+            // Possibly display the error
+            console.error(error)
+          })
+      } else if (value === 'new') {
+        // two words will be concatenated
+        this.success = true
+        this.transliteration = 'Nyū'
+        // state machine for new york
+
+        fsm = new StateMachine({
+          init: 'initial', // initial state
+          transitions: [
+            // new york
+            // Nyūyōku
+            { name: 'new', from: ['initial'], to: 'Nyū' },
+          ],
+        })
+        // generate the graph
+        graph = visualize(fsm, { name: 'fsm', orientation: 'horizontal' })
+        // draw in svg
+        this.viz
+          .renderSVGElement(graph)
+          .then((result) => {
+            // getting the element from the dom
+            that.$refs.state.appendChild(result)
+          })
+          .catch((error) => {
+            // Create a new Viz instance (@see Caveats page for more info)
+            that.viz = new Viz({ Module, render })
+
+            // Possibly display the error
+            console.error(error)
+          })
+      } else if (value === 'york') {
+        // two words will be concatenated
+        this.success = true
+        this.transliteration = 'yōku'
+        // state machine for new york
+
+        fsm = new StateMachine({
+          init: 'initial', // initial state
+          transitions: [
+            // new york
+            // Nyūyōku
+            { name: 'york', from: 'initial', to: 'yōku' },
+          ],
+        })
+        // generate the graph
+        graph = visualize(fsm, { name: 'fsm', orientation: 'horizontal' })
+        // draw in svg
         this.viz
           .renderSVGElement(graph)
           .then((result) => {
@@ -238,34 +382,51 @@ export default {
             // Possibly display the error
             console.error(error)
           })
-      } else if (value === 'com') {
-        // one syllabe
-        this.success = true
-        this.transliteration = 'Kon'
-        fsm = new StateMachine({
-          init: 'initial', // initial state
-          transitions: [
-            // Comp
-            // Kon
-            { name: 'com', from: 'initial', to: 'kon' },
-          ],
-        })
-        // create the graph
-        graph = visualize(fsm, { name: 'fsm', orientation: 'horizontal' })
-        // draw with svg
-        this.viz
-          .renderSVGElement(graph)
-          .then((result) => {
-            // getting the element from the dom
-            that.$refs.state.appendChild(result)
-          })
-          .catch((error) => {
-            // Create a new Viz instance (@see Caveats page for more info)
-            that.viz = new Viz({ Module, render })
-
-            // Possibly display the error
-            console.error(error)
-          })
+      } else if (value === 'bill') {
+      } else if (value === 'ga') {
+      } else if (value === 'tes') {
+      } else if (value === 'billga') {
+      } else if (value === 'golf') {
+      } else if (value === 'ball') {
+      } else if (value === 'golfball') {
+      } else if (value === 'tele') {
+      } else if (value === 'vi') {
+      } else if (value === 'sion') {
+      } else if (value === 'televi') {
+      } else if (value === 'television') {
+      } else if (value === 'ra') {
+      } else if (value === 'dio') {
+      } else if (value === 'radio') {
+      } else if (value === 'tw') {
+      } else if (value === 'in') {
+      } else if (value === 'to') {
+      } else if (value === 'wer') {
+      } else if (value === 'twin') {
+      } else if (value === 'twinto') {
+      } else if (value === 'twintower') {
+      } else if (value === 'vi') {
+      } else if (value === 'deo') {
+      } else if (value === 'ga') {
+      } else if (value === 'me') {
+      } else if (value === 'video') {
+      } else if (value === 'videoga') {
+      } else if (value === 'videogame') {
+      } else if (value === 'res') {
+      } else if (value === 'tau') {
+      } else if (value === 'rant') {
+      } else if (value === 'restau') {
+      } else if (value === 'restaurant') {
+      } else if (value === 'sto') {
+      } else if (value === 'ry') {
+      } else if (value === 'story') {
+      } else if (value === 'ele') {
+      } else if (value === 'va') {
+      } else if (value === 'tor') {
+      } else if (value === 'eleva') {
+      } else if (value === 'elevator') {
+      } else if (value === 'ice') {
+      } else if (value === 'cream') {
+      } else if (value === 'icecream') {
       }
     },
   },
