@@ -4,13 +4,13 @@
       <v-toolbar-side-icon></v-toolbar-side-icon>
       <v-toolbar-title>Japanese transliteration FST</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-tooltip v-if="!computedCompleetness" bottom>
+      <v-tooltip bottom>
         <template v-slot:activator="{ on }">
           <v-btn
             flat
             icon
             v-on="on"
-            href="https://github.com/gimyboya/context-freedom/issues/new/choose"
+            href="https://github.com/gimyboya/fsm-jp/issues/new/choose"
             target="_Blank_"
           >
             <v-icon>mdi-fire</v-icon>
@@ -23,16 +23,10 @@
       </v-btn>
     </v-toolbar>
     <v-content>
-      <v-container fluid>
+      <v-container>
         <v-layout row wrap>
-          <v-flex px-1 mb-2 sx12 md6>
-            <h1>Input</h1>
-          </v-flex>
-          <v-flex px-1 mb-2 sx12 md6>
-            <h1>Fst</h1>
-          </v-flex>
-          <v-flex sx12>
-            <h1>Nothing</h1>
+          <v-flex px-1 mb-2 sx12>
+            <graph></graph>
           </v-flex>
         </v-layout>
       </v-container>
@@ -44,7 +38,7 @@
       <v-btn flat icon href="https://twitter.com/gimyboya" target="_Blank_">
         <v-icon>mdi-twitter</v-icon>
       </v-btn>
-      <v-btn flat icon href="https://github.com/gimyboya/context-freedom" target="_Blank_">
+      <v-btn flat icon href="https://github.com/gimyboya/fsm-jp" target="_Blank_">
         <v-icon>mdi-github-circle</v-icon>
       </v-btn>
       <span>&copy; {{ new Date().getFullYear() }}</span>
@@ -53,10 +47,12 @@
 </template>
 
 <script>
+import graph from '@/components/graph'
 
 export default {
   name: 'App',
   components: {
+    graph,
   },
   data() {
     return {
