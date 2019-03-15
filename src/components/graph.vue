@@ -386,6 +386,7 @@ export default {
       } else if (value === 'ga') {
       } else if (value === 'tes') {
       } else if (value === 'billga') {
+      } else if (value === 'billgates') {
       } else if (value === 'golf') {
       } else if (value === 'ball') {
       } else if (value === 'golfball') {
