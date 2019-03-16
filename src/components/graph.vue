@@ -4,7 +4,22 @@
     <v-card-actions>
       <v-layout>
         <v-flex sx3>
-          <v-text-field label="English" v-model="input" :error="error" outline></v-text-field>
+          <v-text-field label="English" v-model="input" :error="error" outline>
+            <template v-slot:append>
+              <v-menu offset-y>
+                <template v-slot:activator="{ on }">
+                  <v-btn flat icon v-on="on">
+                    <v-icon>mdi-plus-box-outline</v-icon>
+                  </v-btn>
+                </template>
+                <v-list>
+                  <v-list-tile v-for="(word, index) in enWords" :key="index" @click="copy(word)">
+                    <v-list-tile-title>{{ word }}</v-list-tile-title>
+                  </v-list-tile>
+                </v-list>
+              </v-menu>
+            </template>
+          </v-text-field>
           <v-text-field
             label="Japanease transliteration"
             v-model="transliteration"
@@ -41,18 +56,18 @@ export default {
       input: '',
       transliteration: '',
       enWords: [
-        'computer',
-        'new york',
-        'bill gates',
-        'golf ball',
-        'television',
-        'radio',
-        'twin tower',
-        'video game',
-        'restaurant',
-        'story',
-        'elevator',
-        'ice cream',
+        'Computer',
+        'New york',
+        'Bill gates',
+        'Golf ball',
+        'Television',
+        'Radio',
+        'Twin tower',
+        'Video game',
+        'Restaurant',
+        'Story',
+        'Elevator',
+        'Ice cream',
       ],
     }
   },
@@ -156,6 +171,10 @@ export default {
   methods: {
     debouncedInput() {
       return this.input
+    },
+    copy(word) {
+      this.input = ''
+      this.input = word
     },
   },
   watch: {
